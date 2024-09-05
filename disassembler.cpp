@@ -42,6 +42,8 @@
         exit(1);    
     }    
 
+
+
     //Get the file size and read it into a memory buffer    
     fseek(f, 0L, SEEK_END);    
     int fsize = ftell(f);    
