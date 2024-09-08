@@ -49,3 +49,24 @@
     state->pc+=1;  //for the opcode    
    }    
 
+
+
+ void Emulate8080Op(State8080* state)    
+   {    
+    unsigned char *opcode = &state->memory[state->pc];    
+
+    switch(*opcode)    
+    {    
+        case 0x00: break;                   //NOP is easy!    
+        case 0x01:                          //LXI   B,word    
+            state->c = opcode[1];    
+            state->b = opcode[2];    
+            state->pc += 2;                  //Advance 2 more bytes    
+            break;    
+        /*....*/    
+        case 0x41: state->b = state->c; break;    //MOV B,C    
+        case 0x42: state->b = state->d; break;    //MOV B,D    
+        case 0x43: state->b = state->e; break;    //MOV B,E    
+    }    
+    state->pc+=1;    
+   }
