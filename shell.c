@@ -22,3 +22,30 @@
     uint8_t     int_enable;    
    } State8080;    
 
+
+
+ void UnimplementedInstruction(State8080* state)    
+   {    
+    //pc will have advanced one, so undo that    
+    printf ("Error: Unimplemented instruction\n");    
+    exit(1);    
+   }    
+
+   int Emulate8080Op(State8080* state)    
+   {    
+    unsigned char *opcode = &state->memory[state->pc];    
+
+    switch(*opcode)    
+    {    
+        case 0x00: UnimplementedInstruction(state); break;    
+        case 0x01: UnimplementedInstruction(state); break;    
+        case 0x02: UnimplementedInstruction(state); break;    
+        case 0x03: UnimplementedInstruction(state); break;    
+        case 0x04: UnimplementedInstruction(state); break;    
+        /*....*/    
+        case 0xfe: UnimplementedInstruction(state); break;    
+        case 0xff: UnimplementedInstruction(state); break;    
+    }    
+    state->pc+=1;  //for the opcode    
+   }    
+
