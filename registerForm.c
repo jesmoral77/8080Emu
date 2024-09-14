@@ -36,6 +36,7 @@
     case 0x81:      //ADD C    
         {    
             uint16_t answer = (uint16_t) state->a + (uint16_t) state->c;    
+
             state->cc.z = ((answer & 0xff) == 0);    
             state->cc.s = ((answer & 0x80) != 0);    
             state->cc.cy = (answer > 0xff);    
