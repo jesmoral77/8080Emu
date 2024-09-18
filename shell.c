@@ -22,8 +22,6 @@
     uint8_t     int_enable;    
    } State8080;    
 
-
-
  void UnimplementedInstruction(State8080* state)    
    {    
     //pc will have advanced one, so undo that    
@@ -48,8 +46,6 @@
     }    
     state->pc+=1;  //for the opcode    
    }    
-
-
 
  void Emulate8080Op(State8080* state)    
    {    
