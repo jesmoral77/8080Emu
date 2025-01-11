@@ -43,3 +43,24 @@
             state->cc.p = Parity(answer&0xff);    
             state->a = answer & 0xff;    
         }    
+
+ case 0xC6:      //ADI byte    
+        {    
+            uint16_t answer = (uint16_t) state->a + (uint16_t) opcode[1];    
+            state->cc.z = ((answer & 0xff) == 0);    
+            state->cc.s = ((answer & 0x80) != 0);    
+            state->cc.cy = (answer > 0xff);    
+            state->cc.p = Parity(answer&0xff);    
+            state->a = answer & 0xff;    
+        }
+
+ case 0x86:      //ADD M    
+        {    
+            uint16_t offset = (state->h<<8) | (state->l);    
+            uint16_t answer = (uint16_t) state->a + state->memory[offset];    
+            state->cc.z = ((answer & 0xff) == 0);    
+            state->cc.s = ((answer & 0x80) != 0);    
+            state->cc.cy = (answer > 0xff);    
+            state->cc.p = Parity(answer&0xff);    
+            state->a = answer & 0xff;    
+        }
